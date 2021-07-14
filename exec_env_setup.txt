@@ -31,6 +31,12 @@ git clone https://github.com/shwetasakpal/dataframe-examples-py.git
 cd dataframe-examples-py
 export PYTHONPATH="$PWD"
 
+vi .secrets
+i
+copy paste secrets file
+esc
+:wq
+
 # Copy 2 files (private key and .secrets) from local to EMR cluster's master node,
 scp -i test.pem xyz.pem hadoop@<cluster_dns_name>:/home/hadoop/dataframe-examples-py/
 scp -i test.pem .secrets hadoop@<cluster_dns_name>:/home/hadoop/dataframe-examples-py/
