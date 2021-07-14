@@ -46,28 +46,28 @@ if __name__ == '__main__':
     fin_df.printSchema()
     fin_df.show()
 
-    print("Creating dataframe ingestion CSV file using 'SparkSession.read.csv()',")
+    # print("Creating dataframe ingestion CSV file using 'SparkSession.read.csv()',")
+    #
+    # finance_df = spark.read \
+    #     .option("mode", "DROPMALFORMED") \
+    #     .option("header", "false") \
+    #     .option("delimiter", ",") \
+    #     .option("inferSchema", "true") \
+    #     .csv("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/finances.csv") \
+    #     .toDF("id", "has_debt", "has_financial_dependents", "has_student_loans", "income")
+    #
+    # print("Number of partitions = " + str(fin_df.rdd.getNumPartitions()))
+    # finance_df.printSchema()
+    # finance_df.show()
 
-    finance_df = spark.read \
-        .option("mode", "DROPMALFORMED") \
-        .option("header", "false") \
-        .option("delimiter", ",") \
-        .option("inferSchema", "true") \
-        .csv("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/finances.csv") \
-        .toDF("id", "has_debt", "has_financial_dependents", "has_student_loans", "income")
-
-    print("Number of partitions = " + str(fin_df.rdd.getNumPartitions()))
-    finance_df.printSchema()
-    finance_df.show()
-
-    finance_df \
+    fin_df \
         .repartition(2) \
         .write \
         .partitionBy("id") \
         .mode("overwrite") \
         .option("header", "true") \
         .option("delimiter", "~") \
-        .csv("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/fin")
+        .csv("s3a://" + app_conf["s3_conf"]["s3_bucket"] + "/fin123")
 
     spark.stop()
 
