@@ -31,7 +31,7 @@ if __name__== '__main__':
     print("# of records = " + str(station_df.count()))
     print("# of partitions = " + str(station_df.getNumPartitions))
     station_df.printSchema()
-    print("Summery of NYC Open Market Order (OMO) charges dataset,")
+    print("Summery of station,")
     station_df.describe().show()
 
     spark.stop()
