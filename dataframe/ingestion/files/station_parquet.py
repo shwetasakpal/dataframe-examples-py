@@ -28,9 +28,9 @@ if __name__== '__main__':
                 .parquet("s3a://"+app_conf["s3_conf"]["s3_bucket"]+"/parquet_1")\
                 .repartition(5)
 
-    # print("# of records = " + str(station_df.count()))
-    # print("# of partitions = " + str(station_df.getNumPartitions))
-    # station_df.printSchema()
+    print("# of records = " + str(station_df.count()))
+    print("# of partitions = " + str(station_df.getNumPartitions))
+    station_df.printSchema()
     print("Summery of NYC Open Market Order (OMO) charges dataset,")
     station_df.describe().show()
 
