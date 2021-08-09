@@ -29,8 +29,9 @@ if __name__== '__main__':
                 .repartition(5)
 
     print("# of records = " + str(station_df.count()))
-    print("# of partitions = " + str(station_df.rdd.getNumPartitions))
+    print("# of partitions = " + str(station_df.getNumPartitions))
     station_df.printSchema()
+    station_df.describe().show(10)
 
     spark.stop()
 
